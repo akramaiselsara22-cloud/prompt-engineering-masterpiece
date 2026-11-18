@@ -8,7 +8,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;800;900&family=Cairo:wght@400;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
     <style>
     :root {
@@ -41,13 +41,23 @@
     body {
       direction: rtl;
       text-align: right;
-      font-family: 'Amiri', serif;
+      font-family: 'Tajawal', 'IBM Plex Sans Arabic', 'Cairo', -apple-system, sans-serif;
       font-size: 11pt;
       line-height: 1.85;
-      color: var(--text);
+      font-weight: 400;
+      color: #1e293b;
       background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b132b 55%, #050a18 100%) fixed;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       padding-bottom: 60px;
+    }
+
+    /* Scroll offset for sticky navbar */
+    [id] {
+      scroll-margin-top: 85px;
+    }
+    .page-break {
+      scroll-margin-top: 85px;
     }
 
     /* Top Sticky Navigation Bar for Web */
@@ -297,10 +307,12 @@
     }
 
     .dedication-quote {
-      font-size: 14pt;
+      font-family: 'Alexandria', 'Cairo', sans-serif;
+      font-size: 13.5pt;
+      font-weight: 500;
       line-height: 2.2;
       color: #1e293b;
-      font-style: italic;
+      font-style: normal;
       position: relative;
       max-width: 750px;
     }
@@ -315,9 +327,10 @@
 
     /* Typography */
     h1, h2, h3, h4 {
-      font-family: 'Cairo', sans-serif;
+      font-family: 'Cairo', 'Alexandria', sans-serif;
       color: var(--primary);
       line-height: 1.35;
+      letter-spacing: -0.2px;
     }
 
     h1.chapter-header {
@@ -364,8 +377,12 @@
     }
 
     p {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       text-align: justify;
+      color: #334155;
+      font-size: 11pt;
+      line-height: 1.85;
+      font-weight: 400;
     }
 
     /* Callout Boxes */
@@ -689,14 +706,12 @@
       🧭 AI NAVIGATORS <span>| موسوعة الأوامر</span>
     </a>
     <nav class="site-nav-links">
-      <a href="#chap1">البداية</a>
-      <a href="#chap2">البنية السداسية</a>
-      <a href="#chap3">أوامر التحكم Meta</a>
-      <a href="#chap4">قوائم التحقق</a>
-      <a href="#chap5">الشخصيات والنبرة</a>
-      <a href="#chap6">الأدوات السريعة (308)</a>
-      <a href="#chap7">الجناح الأكاديمي</a>
-      <a href="#chap8">مصفوفة 832 اختصاراً</a>
+      <a href="#chap1">فلسفة التوجيه وMeta</a>
+      <a href="#chap2">قوائم التحقق (12)</a>
+      <a href="#chap3">الشخصيات والنبرة</a>
+      <a href="#chap4">الأوامر السريعة (308)</a>
+      <a href="#chap5">الجناح الأكاديمي</a>
+      <a href="#chap6">مصفوفة 832 اختصاراً</a>
       <a href="#author">عن المؤلف</a>
     </nav>
   </header>
