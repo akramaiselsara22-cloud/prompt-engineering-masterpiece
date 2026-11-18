@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الموسوعة الشاملة لاختصارات ChatGPT وهندسة الأوامر | AI NAVIGATORS</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0b132b;
+      --primary-card: #111d40;
+      --secondary: #1e3a8a;
+      --accent: #d97706;
+      --accent-light: #fbbf24;
+      --accent-glow: rgba(217, 119, 6, 0.25);
+      --neon-blue: #0284c7;
+      --text: #1f2937;
+      --text-muted: #4b5563;
+      --text-light: #94a3b8;
+      --bg: #ffffff;
+      --bg-alt: #f8fafc;
+      --border: #e2e8f0;
+      --code-bg: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    @page {
+      size: A5 portrait;
+      margin: 15mm 12mm 15mm 12mm;
+      @bottom-center {
+        content: counter(page);
+        font-family: 'Cairo', sans-serif;
+        font-size: 8.5pt;
+        color: #64748b;
+      }
+    }
+
+    @page :first {
+      margin: 0;
+      @bottom-center { content: normal; }
+    }
+
+    body {
+      direction: rtl;
+      text-align: right;
+      font-family: 'Amiri', serif;
+      font-size: 10.5pt;
+      line-height: 1.8;
+      color: var(--text);
+      background-color: #0b132b;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Screen Wrapper */
+    .book-wrapper {
+      max-width: 154mm;
+      margin: 25px auto;
+      background: var(--bg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* Floating Print Button for Screen View */
+    .floating-toolbar {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 9999;
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-print {
+      background: linear-gradient(135deg, #1e3a8a, #0284c7);
+      color: #ffffff;
+      border: 1px solid #38bdf8;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 16px rgba(2, 132, 199, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-print:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px rgba(2, 132, 199, 0.5);
+    }
+
+    /* Page Breaks */
+    .page-break {
+      break-before: page;
+      page-break-before: always;
+      padding: 16mm 14mm;
+      position: relative;
+    }
+
+    /* Cover Styling */
+    .cover-container {
+      min-height: 215mm;
+      background: linear-gradient(160deg, #070c1e 0%, #0f1c3f 50%, #070d1f 100%);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      padding: 20mm 14mm;
+      position: relative;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      overflow: hidden;
+    }
+
+    .cover-banner-img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      margin-bottom: 15px;
+    }
+
+    .cover-edition-badge {
+      display: inline-block;
+      background: rgba(217, 119, 6, 0.2);
+      border: 1px solid var(--accent-light);
+      color: var(--accent-light);
+      padding: 4px 18px;
+      border-radius: 20px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-top: 10px;
+    }
+
+    .cover-main-title {
+      font-family: 'Cairo', sans-serif;
+      font-size: 24pt;
+      font-weight: 900;
+      line-height: 1.3;
+      color: #ffffff;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.6);
+      margin: 15px 0 10px 0;
+    }
+
+    .cover-sub-title {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 12.5pt;
+      color: #93c5fd;
+      line-height: 1.6;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+
+    .cover-stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 15px 0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 16px;
+      border-radius: 12px;
+    }
+
+    .stat-pill {
+      font-family: 'Cairo', sans-serif;
+      font-size: 9pt;
+      color: #e2e8f0;
+    }
+
+    .stat-pill strong {
+      color: var(--accent-light);
+      font-size: 11pt;
+    }
+
+    .cover-footer {
+      font-family: 'Cairo', sans-serif;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      width: 100%;
+      padding-top: 12px;
+    }
+
+    .cover-author-name {
+      font-size: 14pt;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .cover-author-tag {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 9pt;
+      color: #94a3b8;
+    }
+
+    /* Colophon / Legal */
+    .colophon-container {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 9pt;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 180mm;
+      border-left: 3px solid var(--accent);
+      padding-left: 15px;
+    }
+
+    .colophon-title {
+      font-family: 'Cairo', sans-serif;
+      font-size: 14pt;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .colophon-block {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 8px 0;
+    }
+
+    /* Dedication Page */
+    .dedication-container {
+      min-height: 170mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20mm;
+    }
+
+    .dedication-quote {
+      font-size: 13.5pt;
+      line-height: 2.1;
+      color: #1e293b;
+      font-style: italic;
+      position: relative;
+    }
+
+    .dedication-quote::before, .dedication-quote::after {
+      content: "✦";
+      color: var(--accent);
+      display: block;
+      font-size: 16pt;
+      margin: 10px 0;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: 'Cairo', sans-serif;
+      color: var(--primary);
+      line-height: 1.35;
+    }
+
+    h1.chapter-header {
+      font-size: 17pt;
+      font-weight: 900;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 6px;
+      margin-top: 10px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chapter-tag {
+      font-family: 'Cairo', sans-serif;
+      font-size: 9pt;
+      background: var(--accent);
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 12.5pt;
+      font-weight: 800;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      color: var(--secondary);
+    }
+
+    h3 {
+      font-size: 11pt;
+      font-weight: 700;
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+
+    p {
+      margin-bottom: 10px;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    /* Callout Boxes */
+    .callout {
+      background: var(--bg-alt);
+      border-right: 4px solid var(--secondary);
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      break-inside: avoid;
+    }
+
+    .callout.gold {
+      background: #fefce8;
+      border-right-color: var(--accent);
+      border: 1px solid #fef08a;
+      border-right-width: 4px;
+    }
+
+    .callout.blue {
+      background: #f0f9ff;
+      border-right-color: #0284c7;
+      border: 1px solid #bae6fd;
+      border-right-width: 4px;
+    }
+
+    .callout-title {
+      font-family: 'Cairo', sans-serif;
+      font-weight: 800;
+      font-size: 10pt;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+    }
+
+    /* Prompt Command Pill & Code */
+    .cmd-badge {
+      display: inline-block;
+      direction: ltr;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      font-weight: 700;
+      background: #0f172a;
+      color: #38bdf8;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+    }
+
+    .cmd-badge.gold {
+      color: #fbbf24;
+      border-color: #854d0e;
+    }
+
+    /* Tables */
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 8.5pt;
+      margin: 12px 0;
+      break-inside: avoid;
+    }
+
+    table.data-table th, table.data-table td {
+      border: 1px solid #cbd5e1;
+      padding: 6px 8px;
+      text-align: right;
+    }
+
+    table.data-table th {
+      background: #1e3a8a;
+      color: #ffffff;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 9pt;
+    }
+
+    table.data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* Checklist Cards */
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .checklist-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      break-inside: avoid;
+    }
+
+    .checklist-card-header {
+      font-family: 'Cairo', sans-serif;
+      font-weight: 800;
+      font-size: 10pt;
+      color: var(--secondary);
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+    }
+
+    .check-item {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 8.5pt;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .check-item::before {
+      content: "✔";
+      color: #16a34a;
+      font-size: 9pt;
+      font-weight: bold;
+    }
+
+    /* Table of Contents */
+    .toc-list {
+      list-style: none;
+      margin: 14px 0;
+    }
+
+    .toc-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 6px 0;
+      border-bottom: 1px dotted #cbd5e1;
+      font-family: 'Cairo', sans-serif;
+      font-size: 9.5pt;
+    }
+
+    .toc-item a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .toc-item a:hover {
+      color: var(--secondary);
+    }
+
+    .toc-dots {
+      flex: 1;
+      border-bottom: 1px dotted #94a3b8;
+      margin: 0 8px;
+    }
+
+    .toc-page {
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    /* Author Profile Card */
+    .author-card {
+      background: linear-gradient(145deg, #0f1c3f, #070c1e);
+      color: #ffffff;
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 20px;
+      break-inside: avoid;
+    }
+
+    .author-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .author-avatar {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fbbf24, #d97706);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b132b;
+      font-family: 'Cairo', sans-serif;
+      font-size: 18pt;
+      font-weight: 900;
+    }
+
+    .author-meta h3 {
+      color: #ffffff;
+      margin: 0;
+      font-size: 13pt;
+    }
+
+    .author-meta p {
+      color: #93c5fd;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 9pt;
+      margin: 0;
+    }
+
+    .author-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 10px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 9pt;
+    }
+
+    .author-contacts a {
+      color: #fef08a;
+      text-decoration: none;
+    }
+
+    /* Print Overrides */
+    @media print {
+      body {
+        background: #ffffff !important;
+      }
+      .book-wrapper {
+        box-shadow: none !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        border-radius: 0 !important;
+      }
+      .floating-toolbar {
+        display: none !important;
+      }
+      .cover-container {
+        min-height: 100vh !important;
+        border: none !important;
+      }
+      .page-break {
+        break-before: page !important;
+        page-break-before: always !important;
+        padding: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Screen Action Button -->
+  <div class="floating-toolbar">
+    <button class="btn-print" onclick="window.print()">
+      🖨️ طباعة أو حفظ كـ PDF (A5)
+    </button>
+  </div>
+
+  <div class="book-wrapper">
+
+    <!-- ==================== الغلاف الأمامي ==================== -->
+    <div class="cover-container">
+      <div>
+        <img src="assets/banner.jpg" alt="AI NAVIGATORS Banner" class="cover-banner-img">
+        <div class="cover-edition-badge">المجلد الماسي الشامل • Masterpiece Edition 2026</div>
+      </div>
+
+      <div>
+        <h1 class="cover-main-title">الموسوعة الشاملة لاختصارات ChatGPT</h1>
+        <p class="cover-sub-title">الدليل العملي والميداني الأكبر لهندسة الأوامر، مصفوفة الأعمال المؤسسية (832 اختصاراً)، الأوامر السريعة (308)، وقوائم التحقق المتقدمة</p>
+        
+        <div class="cover-stats-bar">
+          <div class="stat-pill"><strong>832</strong> اختصار مصفوفي</div>
+          <div class="stat-pill"><strong>308</strong> أوامر سريعة</div>
+          <div class="stat-pill"><strong>50</strong> قائمة فحص</div>
+          <div class="stat-pill"><strong>11</strong> شخصية توجيه</div>
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <div class="cover-author-name">إعداد وتأليف: Abo Aisel ELmasry</div>
+        <div class="cover-author-tag">تحت مظلة مجتمع: AI NAVIGATORS — Guiding Intelligent Future</div>
+      </div>
+    </div>
+
+    <!-- ==================== صفحة الحقوق والبيانات الفنية ==================== -->
+    <div class="page-break">
+      <div class="colophon-container">
+        <div class="colophon-title">بيانات الإصدار وحقوق الملكية الفكرية</div>
+        
+        <div class="colophon-block">
+          <p><strong>اسم المصنف:</strong> الموسوعة الشاملة لاختصارات ChatGPT وهندسة الأوامر المتقدمة</p>
+          <p><strong>المؤلف والمهندس:</strong> Abo Aisel ELmasry</p>
+          <p><strong>العلامة والناشر:</strong> مجتمع ومنصة AI NAVIGATORS</p>
+          <p><strong>الإصدار:</strong> الطبعة الماسية الأولى (المحدثة لعام 2026)</p>
+          <p><strong>البريد الإلكتروني المعتمد:</strong> aisel.strategy@gmail.com</p>
+          <p><strong>رقم التواصل المباشر / واتساب:</strong> 01037489146</p>
+        </div>
+
+        <div class="colophon-block" style="font-size: 8pt; line-height: 1.6;">
+          <p><strong>شروط الترخيص وحماية الملكية:</strong></p>
+          <p>جميع الحقوق محفوظة © 2026 لـ [Abo Aisel / AI NAVIGATORS]. يمنح هذا الدليل للمشتري ترخيصاً للاستخدام الشخصي والتطوير المهني في عمله أو مشروعه. يُحظر تماماً إعادة بيع هذا المنتج أو نسخه أو رفعه أو توزيعه على مجموعات أو منصات رقمية بمقابل أو بدون مقابل دون إذن كتابي مسبق وصريح من صاحب الحقوق.</p>
+        </div>
+
+        <div style="margin-top: 15px; text-align: center; font-size: 8.5pt; color: var(--accent);">
+          «بناء المستقبل الذكي يبدأ من امتلاك الأداة الصحيحة والنظام المنضبط»
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== صفحة الإهداء ==================== -->
+    <div class="page-break">
+      <div class="dedication-container">
+        <div class="dedication-quote">
+          إلى كل باحثٍ ومبدعٍ ورائد أعمال يسعى لترويض قوة الذكاء الاصطناعي...<br>
+          إلى من لا يكتفون بالأجوبة السطحية، بل يبنون أنظمة تفكير متقدمة تختصر الساعات في دقائق...<br>
+          أهديكم هذا الدليل ليكون بوصلتكم اليومية في مجتمع الذكاء الاصطناعي.
+        </div>
+        <div style="margin-top: 15px; font-family: 'Cairo', sans-serif; font-weight: 700; color: var(--secondary);">
+          — Abo Aisel
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== التمهيد وقصة النظام ==================== -->
+    <div class="page-break">
+      <span class="chapter-tag">مدخل استراتيجي</span>
+      <h1 class="chapter-header">ليه اختفيت؟ وإيه حكاية الـ 832 اختصار؟</h1>
+      
+      <p>
+        خلال الفترة الماضية، كنت بعيداً عن النشر اليومي على الصفحة.. مش علشان وقفت، لكن علشان كنت بجرب وبراجع وببني <strong>طريقة شغل عملية حقيقية مع الذكاء الاصطناعي</strong>.
+      </p>
+      <p>
+        ناس كتير بتتعامل مع الذكاء الاصطناعي على إنه "شات" أو محادثة عفوية، والنتيجة بتكون إجابات مكررة، عامة، وسطحية. بينما المحترفون ورواد الأعمال وفرق العمل المتقدمة يتعاملون معه كـ <strong>نظام تشغيل معرفي (Operating System)</strong>.
+      </p>
+
+      <div class="callout gold">
+        <div class="callout-title">⚠️ الحقيقة الأهم: الهدف مش إنك تحفظ 832 اختصار!</div>
+        <p style="margin: 0; font-size: 9.5pt;">
+          الهدف الحقيقي هو أن تمتلك <strong>معمارية جاهزة لكل موقف</strong>: اختصار يساعدك تكتب، اختصار يحلل بياناتك، اختصار يجهز خطتك، واختصار يرتب اجتماعك دون أن تضيع وقتاً في صياغة السؤال من الصفر كل مرة.
+        </p>
+      </div>
+
+      <h2>ما الذي يميز هذا المرجع الموسوعي؟</h2>
+      <p>
+        هذا الكتيب يدمج لأول مرة بين ثلاثة أركان أساسية:
+      </p>
+      <ol style="margin-right: 20px; margin-bottom: 12px; font-family: 'Tajawal', sans-serif;">
+        <li><strong>أوامر التفكير الذكي (Meta-Prompts):</strong> التي ترغم النموذج على التفكير العميق والتحليل النقدي قبل الإجابة.</li>
+        <li><strong>الأوامر التنفيذية السريعة (308 اختصاراً):</strong> للتصميم، التسويق، المحتوى، والبرمجة.</li>
+        <li><strong>المصفوفة المؤسسية الشاملة (832 اختصاراً):</strong> مقسمة بدقة رياضية عبر 26 مجالاً و32 مهمة قياسية موحدة.</li>
+      </ol>
+    </div>
+
+    <!-- ==================== فهرس المحتويات ==================== -->
+    <div class="page-break">
+      <span class="chapter-tag">خارطة الدليل</span>
+      <h1 class="chapter-header">فهرس المحتويات العام</h1>
+      
+      <ul class="toc-list">
+        <li class="toc-item">
+          <a href="#chap1">الباب الأول: فلسفة التوجيه ومنظومة التفكير الفوقي (Meta-Prompting)</a>
+          <span class="toc-dots"></span>
+          <span class="toc-page">1</span>
+        </li>
+        <li class="toc-item">
+          <a href="#chap2">الباب الثاني: حقيبة الجودة وقوائم التحقق الميدانية (Checklists)</a>
+          <span class="toc-dots"></span>
+          <span class="toc-page">7</span>
+        </li>
+        <li class="toc-item">
+          <a href="#chap3">الباب الثالث: قاموس الشخصيات والنبرات والمحددات البصرية</a>
+          <span class="toc-dots"></span>
+          <span class="toc-page">14</span>
+        </li>
+        <li class="toc-item">
+          <a href="#chap4">الباب الرابع: بنك الأوامر التنفيذية السريعة (308 اختصاراً)</a>
+          <span class="toc-dots"></span>
+          <span class="toc-page">22</span>
+        </li>
+        <li class="toc-item">
+          <a href="#chap5">الباب الخامس: جناح البحث الأكاديمي والجامعي (Academic Suite)</a>
+          <span class="toc-dots"></span>
+          <span class="toc-page">45</span>
+        </li>
+        <li class="toc-item">
+          <a href="#chap6">الباب السادس: المصفوفة المؤسسية الكبرى (قاموس 832 اختصاراً)</a>
+          <span class="toc-dots"></span>
+          <span class="toc-page">58</span>
+        </li>
+        <li class="toc-item">
+          <a href="#author">خاتمة المطاف، بطاقة المؤلف، ومجتمع AI Navigators</a>
+          <span class="toc-dots"></span>
+          <span class="toc-page">90</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ==================== الباب الأول ==================== -->
+    <div class="page-break" id="chap1">
+      <span class="chapter-tag">الباب الأول</span>
+      <h1 class="chapter-header">فلسفة التوجيه ومنظومة التفكير الفوقي</h1>
+      
+      <p>
+        قبل أن تطلب من الذكاء الاصطناعي تنفيذ أي مهمة، عليك توجيه <strong>طريقة تفكيره ومسار معالجته للمعلومة</strong>. أوامر التفكير الفوقية (Meta-Commands) هي الفارق بين إجابة سطحية عامة وبين مخرج استشاري متعمق.
+      </p>
+
+      <h2>1. أوامر التفكير والتحليل العليا (Thinking Modifiers)</h2>
+      
+      <div class="callout blue">
+        <div class="callout-title"><span class="cmd-badge">/5Whys</span> التحليل السببي الجذري للمشكلات</div>
+        <p style="margin: 0; font-size: 9pt;">
+          يجبر الذكاء الاصطناعي على تطبيق منهجية تويوتا الشهيرة في طرح سؤال "لماذا؟" خمس مرات متتالية لكشف الجذر الحقيقي للأزمة وليس مجرد أعراضها الظاهرة.<br>
+          <em>مثال:</em> <span class="cmd-badge">/5Whys</span> مبيعات المتجر انخفضت بنسبة 35% رغم زيادة ميزانية الإعلانات.
+        </p>
+      </div>
+
+      <div class="callout blue">
+        <div class="callout-title"><span class="cmd-badge">/Steelman</span> مبدأ بناء الحجة الأقوى قبل النقد</div>
+        <p style="margin: 0; font-size: 9pt;">
+          بدلاً من الهجوم السريع على الفكرة، يقوم النموذج ببناء أقوى نسخة ممكنة وموثقة من الرأي أو الاقتراح قبل الشروع في تقييمه أو نقد مخاطره.<br>
+          <em>مثال:</em> <span class="cmd-badge">/Steelman</span> الاعتماد الكامل على الفريلانسرز بدلاً من توظيف فريق ثابت.
+        </p>
+      </div>
+
+      <div class="callout blue">
+        <div class="callout-title"><span class="cmd-badge">/ReflectiveMode</span> المراجعة الذاتية والتصحيح التلقائي</div>
+        <p style="margin: 0; font-size: 9pt;">
+          يمنع النموذج من إنهاء المخرج فوراً؛ بل يلزمه بمراجعة ما كتبه، اكتشاف نقاط الضعف، ثم إصدار نسخة منقحة ومحسنة ذاتياً.<br>
+          <em>مثال:</em> <span class="cmd-badge">/ReflectiveMode</span> صغ خطة محتوى إطلاق دورة تدريبية لمديري التسويق.
+        </p>
+      </div>
+
+      <div class="callout blue">
+        <div class="callout-title"><span class="cmd-badge">/Feynman</span> تقنية فاينمان للتبسيط الخارق</div>
+        <p style="margin: 0; font-size: 9pt;">
+          شرح المفاهيم العلمية والتقنية شديدة التعقيد بلغة بصرية بيضاء تناسب طفلاً في العاشرة من عمره دون تشويه الحقيقة العلمية.<br>
+          <em>مثال:</em> <span class="cmd-badge">/Feynman</span> كيف تعمل شبكات البلوك تشين والعقود الذكية؟
+        </p>
+      </div>
+
+      <div class="callout blue">
+        <div class="callout-title"><span class="cmd-badge">/NoIntro</span> & <span class="cmd-badge">/TLDR</span> الحسم والإنتاجية الفورية</div>
+        <p style="margin: 0; font-size: 9pt;">
+          <span class="cmd-badge">/NoIntro</span> يلغي كافة العبارات الترحيبية والتمهيدية ويبدأ مباشرة في صلب النتيجة.<br>
+          <span class="cmd-badge">/TLDR</span> يلخص الردود والمستندات الطويلة في سطور سريعة مركزة.
+        </p>
+      </div>
+
+      <h2>2. معجم التحكم وهندسة السياق المحدث لعام 2026</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>الأمر</th>
+            <th>الوظيفة والهدف</th>
+            <th>مثال الاستخدام</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cmd-badge">/role</span></td>
+            <td>تحديد الدور الاستشاري بدقة</td>
+            <td><code>/role كبير مستشاري تموضع العلامات التجارية</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/context</span></td>
+            <td>حقن بيئة العمل وظروف السوق</td>
+            <td><code>/context شركة ناشئة في سوق التوصيل السريع بمصر</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/constraints</span></td>
+            <td>فرض المحددات والممنوعات الصارمة</td>
+            <td><code>/constraints ميزانية لا تتجاوز 1000$ وبدون أدوات مدفوعة</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/assumptions</span></td>
+            <td>كشف الافتراضات الضمنية قبل الإجابة</td>
+            <td><code>/assumptions اذكر فرضياتك بشأن الجمهور قبل البدء</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/iterate</span></td>
+            <td>توليد 3 مسارات تطويرية بديلة</td>
+            <td><code>/iterate طور العنوان المقترح بثلاث نبرات مختلفة</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>3. استدعاء أدوات ChatGPT الرسمية الموثقة</h2>
+      <ul style="margin-right: 20px; font-family: 'Tajawal', sans-serif; font-size: 9pt;">
+        <li><span class="cmd-badge">@Deepresearch</span>: لبدء جولات البحث المعمق متعددة المراحل وجمع الأدلة الموثقة بالمصادر.</li>
+        <li><span class="cmd-badge">@study</span>: تفعيل نمط المعلم التفاعلي القائم على الأسئلة التدريجية دون إعطاء الإجابات الجاهزة.</li>
+        <li><span class="cmd-badge">@Data</span>: استدعاء محلل البيانات المتقدم لفحص ملفات Excel وCSV وتوليد المخططات البيانية.</li>
+      </ul>
+    </div>
+
+    <!-- ==================== الباب الثاني ==================== -->
+    <div class="page-break" id="chap2">
+      <span class="chapter-tag">الباب الثاني</span>
+      <h1 class="chapter-header">حقيبة الجودة وقوائم التحقق الميدانية</h1>
+      
+      <p>
+        مستلهمة من المعايير الماسية لكتاب <em>Prompt Chief</em> (الجزء الثالث - المجلد الماسي)، تهدف هذه القوائم إلى ضبط جودة الأوامر ومنع التشتت والهلوسة قبل وأثناء تشغيل الذكاء الاصطناعي.
+      </p>
+
+      <div class="checklist-grid">
+        
+        <!-- قائمة 1 -->
+        <div class="checklist-card">
+          <div class="checklist-card-header">
+            <span>Checklist 01: فحص البرومبت قبل الإرسال (Pre-Flight)</span>
+            <span class="cmd-badge">Prompt Quality</span>
+          </div>
+          <div class="check-item">هل تم تحديد الدور التخصصي بدقة واضحة (Role)؟</div>
+          <div class="check-item">هل تم توضيح الجمهور المستهدف ومستوى خلفيته المعرفية (Audience)؟</div>
+          <div class="check-item">هل تم ذكر القيود والمحددات والممنوعات بوضوح (Constraints)؟</div>
+          <div class="check-item">هل تم تحديد شكل المخرج النهائي بدقة (جدول، نقاط، كود، مسودة)؟</div>
+        </div>
+
+        <!-- قائمة 2 -->
+        <div class="checklist-card">
+          <div class="checklist-card-header">
+            <span>Checklist 02: ضبط السياق وبناء المعطيات</span>
+            <span class="cmd-badge">Context Building</span>
+          </div>
+          <div class="check-item">فصل الحقائق والبيانات المؤكدة عن الافتراضات والتوقعات.</div>
+          <div class="check-item">تضمين نموذج إجابة مرجعي واحد على الأقل (One-Shot Example).</div>
+          <div class="check-item">تحديد النبرة الشعورية والمهنية (رسمية، تحفيزية، إقناعية، تعليمية).</div>
+          <div class="check-item">إلزام النموذج بطلب توضيحات إذا كانت البيانات المرفوعة ناقصة.</div>
+        </div>
+
+        <!-- قائمة 3 -->
+        <div class="checklist-card">
+          <div class="checklist-card-header">
+            <span>Checklist 03: مراجعة المخرجات ومنع الهلوسة</span>
+            <span class="cmd-badge">Output Validation</span>
+          </div>
+          <div class="check-item">مطابقة الأرقام والإحصائيات مع المصادر والبيانات المرفوعة.</div>
+          <div class="check-item">التأكد من عدم وجود اختلاق مصادر أو مراجع غير موجودة.</div>
+          <div class="check-item">فحص المنطق الداخلي وتسلسل الاستنتاجات وخلوها من التناقض.</div>
+          <div class="check-item">التأكد من التزام النموذج بكافة القيود المكانية والزمنية المفروضة.</div>
+        </div>
+
+        <!-- قائمة 4 -->
+        <div class="checklist-card">
+          <div class="checklist-card-header">
+            <span>Checklist 04: بناء العقل الثاني وإدارة المعرفة</span>
+            <span class="cmd-badge">Second Brain</span>
+          </div>
+          <div class="check-item">توثيق الأوامر الناجحة داخل مكتبة أوامر منظمة (Prompt Library).</div>
+          <div class="check-item">تحديث التعليمات المخصصة (Custom Instructions) دورياً بناءً على تكرار المهام.</div>
+          <div class="check-item">تخصيص مساحة مشروع (Project) منفصلة لكل عميل أو مبادرة طويلة المدى.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==================== الباب الثالث ==================== -->
+    <div class="page-break" id="chap3">
+      <span class="chapter-tag">الباب الثالث</span>
+      <h1 class="chapter-header">قاموس الشخصيات والنبرات والمحددات البصرية</h1>
+      
+      <p>
+        تتيح لك شخصيات التوجيه الـ 11 تغيير سلوك وعقلية الذكاء الاصطناعي بكلمة واحدة، بينما تمنحك معاملات الكاميرا التحكم الكامل في زوايا اللقطات وعمق التكوين البصري.
+      </p>
+
+      <h2>1. مصفوفة الشخصيات التوجيهية الـ 11 (Prompt Personas)</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>الشخصية</th>
+            <th>طريقة التفكير والنبرة</th>
+            <th>مثال الاستخدام والتطبيق</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cmd-badge gold">/PRO</span></td>
+            <td>خبير استشاري متمرس، يركز على الممارسات القياسية</td>
+            <td><code>/PRO حلل استراتيجية تسعير الخدمة لشركات الـ B2B</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge gold">/FOUNDER</span></td>
+            <td>عقلية مؤسس ورائد أعمال، يركز على النمو والربح وحساب المخاطر</td>
+            <td><code>/FOUNDER قيّم الفكرة من زاوية التوسع واقتناص الحصة السوقية</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge gold">/COACH</span></td>
+            <td>مدرب عملي وتحفيزي، يحول الأهداف الكبيرة إلى خطوات أسبوعية</td>
+            <td><code>/COACH حول هدفي في إتقان البرمجة إلى خطة تدريب مكثفة</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge gold">/SKEPTIC</span></td>
+            <td>ناقد فاحص متشكك، يبحث عن الثغرات والمشاكل قبل اتخاذ القرار</td>
+            <td><code>/SKEPTIC اذكر 5 مخاطر خفية قد تفشل حملة الإطلاق القادمة</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge gold">/TEACHER</span></td>
+            <td>معلم صبور يشرح المفاهيم بالخطوات والأمثلة الحية</td>
+            <td><code>/TEACHER اشرح الفروق الجوهرية بين الهوية البصرية والشعار</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge gold">/FIVE</span></td>
+            <td>تبسيط فائق ومجازي يشرح كأنك تتحدث لطفل في الخامسة</td>
+            <td><code>/FIVE اشرح كيف تعمل شبكات التغذية العصبية الاصطناعية</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge gold">/TIGHT</span></td>
+            <td>إيجاز حاسم ومكثف يلخص الفكرة في 3 نقاط محددة فقط</td>
+            <td><code>/TIGHT لخص أسباب فشل صفقات المبيعات في 3 نقاط محددة</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge gold">/LONGFORM</span></td>
+            <td>دليل شامل متعمق، يغطي الخلفيات والمراحل وأفضل الممارسات</td>
+            <td><code>/LONGFORM اكتب دليلاً متكاملاً خطوة بخطوة لبناء متجر رقمي</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge gold">/SELL</span></td>
+            <td>صياغة تسويقية مقنعة تركز على فوائد العميل وتحريك الرغبة</td>
+            <td><code>/SELL اكتب وصفاً لمنتج عناية بالبشرة يبرز القيمة العاطفية</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge gold">/CALM</span></td>
+            <td>نبرة خدمة عملاء هادئة، دبلوماسية، ومتزنة لامتصاص الغضب</td>
+            <td><code>/CALM أعد صياغة الرد على عميل غاضب من تأخر تسليم الشحنة</code></td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge gold">/PLAIN</span></td>
+            <td>لغة يومية بسيطة وسهلة الفهم خالية من التكلف والتقعير</td>
+            <td><code>/PLAIN اشرح فكرة التسويق عبر البريد الإلكتروني لشخص مبتدئ</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>2. معاملات الكاميرا والتكوين البصري والعمق السينمائي</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>الأمر البصري</th>
+            <th>التأثير التشكيلي والفني في الصورة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cmd-badge">/depth</span></td>
+            <td>إضافة إحساس واقعي وعميق بالمسافة بين العناصر داخل المشهد</td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/foreground</span></td>
+            <td>إبراز عنصر قريب جداً من الكاميرا في مقدمة الصورة لتأطير المشهد</td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/midground</span></td>
+            <td>تركيز الشخصية أو المنتج الرئيسي في المنطقة المتوسطة المتوازنة</td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/bokeh</span></td>
+            <td>عزل الخلفية بتأثير ضبابي ناعم مع دوائر ضوئية جذابة واحترافية</td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/layeredcomposition</span></td>
+            <td>بناء الصورة على عدة طبقات بصرية متداخلة لتعزيز الإبهار والواقعية</td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/deepfocus</span></td>
+            <td>إبقاء كافة مستويات المشهد من الأمام إلى الخلفية في بؤرة وضوح فائقة</td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/atmosphericdepth</span></td>
+            <td>خلق عمق سينمائي باستخدام الضباب الخفيف والإضاءة وتدرج الظلال</td>
+          </tr>
+          <tr>
+            <td><span class="cmd-badge">/keepface</span> & <span class="cmd-badge">/keeplogo</span></td>
+            <td>الحفاظ التام على ملامح الوجه الأصلية أو هوية الشعار دون أي تشويه أو تعديل</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ==================== الباب الرابع ==================== -->
+    <div class="page-break" id="chap4">
+      <span class="chapter-tag">الباب الرابع</span>
+      <h1 class="chapter-header">بنك الأوامر التنفيذية السريعة (308 اختصاراً)</h1>
+      
+      <p>
+        دليل ميداني للأوامر السريعة المباشرة، مصمم ليتم دمجه في رسائل واحدة مثل: <code>/productshot /luxury /metaads /4x5 /noextra</code>.
+      </p>
+
+      <h2>1. أوامر التصميم والوسائط الإعلانية (Design & Mockups)</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>الأمر</th>
+            <th>الوظيفة والنتيجة الميدانية</th>
+            <th>صيغة الدمج المقترحة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="cmd-badge">/mockup</span></td><td>وضع التصميم داخل موكاب احترافي واقعي</td><td><code>/mockup + أرفق الشعار أو التصميم</code></td></tr>
+          <tr><td><span class="cmd-badge">/3dbillboard</span></td><td>عرض التصميم على شاشة إعلانية 3D بالشارع</td><td><code>/3dbillboard /night /city</code></td></tr>
+          <tr><td><span class="cmd-badge">/metaads</span></td><td>تحويل الفكرة إلى إعلان متوافق مع خوارزميات ميتا</td><td><code>/metaads /4x5 /hook /cta</code></td></tr>
+          <tr><td><span class="cmd-badge">/productshot</span></td><td>إنشاء لقطة إعلانية تجارية عالية الجاذبية</td><td><code>/productshot /studio /luxury /marble</code></td></tr>
+          <tr><td><span class="cmd-badge">/packshot</span></td><td>صورة نظيفة للمنتج بخلفية استوديو بيضاء للمتاجر</td><td><code>/packshot /whitebg /ecommerce</code></td></tr>
+          <tr><td><span class="cmd-badge">/floatingproduct</span></td><td>عرض المنتج عائماً في الهواء بتأثير حركي وظل واقعي</td><td><code>/floatingproduct /shadow /splash</code></td></tr>
+          <tr><td><span class="cmd-badge">/explodeview</span></td><td>تفكيك بصري ثلاثي الأبعاد يوضح المكونات الداخلية</td><td><code>/explodeview /3d /technical</code></td></tr>
+          <tr><td><span class="cmd-badge">/luxury</span> & <span class="cmd-badge">/minimal</span></td><td>تطبيق الطابع الفاخر أو النظيف الهادئ على المشهد</td><td><code>/luxury /gold /cinematic</code></td></tr>
+        </tbody>
+      </table>
+
+      <h2>2. أوامر تعديل الصور وترميمها (Photo Editing & Retouch)</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>الأمر</th>
+            <th>الوظيفة</th>
+            <th>مثال الاستخدام</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="cmd-badge">/upscale</span></td><td>مضاعفة دقة الصورة والحفاظ على الحدة والتفاصيل</td><td><code>/upscale /keepface</code></td></tr>
+          <tr><td><span class="cmd-badge">/retouch</span></td><td>رتوش وتنقية احترافية للبشرة مع مظهر طبيعي</td><td><code>/retouch /keepface /natural</code></td></tr>
+          <tr><td><span class="cmd-badge">/removebg</span></td><td>عزل وتفريغ الخلفية بدقة عالية وجعلها شفافة</td><td><code>/removebg /transparent</code></td></tr>
+          <tr><td><span class="cmd-badge">/changebg</span></td><td>استبدال خلفية الصورة بخلفية استوديو أو بيئة محددة</td><td><code>/changebg /studio /softlight</code></td></tr>
+          <tr><td><span class="cmd-badge">/headshot</span></td><td>تحويل أي صورة شخصية عادية إلى صورة مهنية للشركات</td><td><code>/headshot /suit /formal /linkedin</code></td></tr>
+          <tr><td><span class="cmd-badge">/relight</span></td><td>إعادة توزيع مساقط الضوء والظلال بنعومة واقعية</td><td><code>/relight /goldenhour /warm</code></td></tr>
+          <tr><td><span class="cmd-badge">/expand</span></td><td>توسيع إطار الصورة وتوليد الأطراف الناقصة بنسبة محددة</td><td><code>/expand /16x9 /realistic</code></td></tr>
+        </tbody>
+      </table>
+
+      <h2>3. أوامر كتابة المحتوى والتسويق والمبيعات (Content & Growth)</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>الأمر</th>
+            <th>الوظيفة والتطبيق العملي</th>
+            <th>مثال الاستدعاء</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="cmd-badge">/hook</span></td><td>صياغة افتتاحيات صادمة وقوية تمنع التمرير</td><td><code>/hook /3options /tiktok /curiosity</code></td></tr>
+          <tr><td><span class="cmd-badge">/cta</span></td><td>صياغة دعوة لاتخاذ إجراء واضحة ومحفزة للتحويل</td><td><code>/cta /sales /urgency /limited</code></td></tr>
+          <tr><td><span class="cmd-badge">/script</span></td><td>كتابة سكريبت فيديو ريلز متكامل مع توجيهات الحركة</td><td><code>/script /60sec /storytelling /hook</code></td></tr>
+          <tr><td><span class="cmd-badge">/funnel</span></td><td>تصميم قمع تسويقي كامل من الوعي إلى الشراء</td><td><code>/funnel /leadgen /b2b /course</code></td></tr>
+          <tr><td><span class="cmd-badge">/pitch</span></td><td>صياغة عرض بيعي سريع ومكثف في 30 ثانية</td><td><code>/pitch /30sec /investor /startup</code></td></tr>
+          <tr><td><span class="cmd-badge">/objection</span></td><td>تفنيد اعتراضات العميل وصياغة ردود إقناعية ذكية</td><td><code>/objection السعر غالي مقارنة بالمنافسين</code></td></tr>
+          <tr><td><span class="cmd-badge">/closing</span></td><td>اقتراح أساليب استشارية لإغلاق الصفقات المتأرجحة</td><td><code>/closing /consultative /winwin</code></td></tr>
+        </tbody>
+      </table>
+
+      <h2>4. أوامر البرمجة ومراجعة الكود (Code & Architecture)</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>الأمر</th>
+            <th>الوظيفة</th>
+            <th>صيغة الاستخدام</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="cmd-badge">/debug</span></td><td>اكتشاف وتحديد سبب الأعطال البرمجية وحلها</td><td><code>/debug + أرفق كود الخطأ وبيئة التشغيل</code></td></tr>
+          <tr><td><span class="cmd-badge">/refactor</span></td><td>تحسين بنية الكود وتسهيل قراءته دون تغيير سلوكه</td><td><code>/refactor /clean /solid /python</code></td></tr>
+          <tr><td><span class="cmd-badge">/optimize</span></td><td>رفع كفاءة استهلاك الذاكرة وسرعة المعالجة</td><td><code>/optimize /sql /index /execution_time</code></td></tr>
+          <tr><td><span class="cmd-badge">/unittest</span></td><td>توليد اختبارات برمجية شاملة للحاالت الاستثنائية</td><td><code>/unittest /pytest /edgecases</code></td></tr>
+          <tr><td><span class="cmd-badge">/architecture</span></td><td>تصميم هيكلية النظام والبنية البرمجية القابلة للتوسع</td><td><code>/architecture /scalable /microservices</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ==================== الباب الخامس ==================== -->
+    <div class="page-break" id="chap5">
+      <span class="chapter-tag">الباب الخامس</span>
+      <h1 class="chapter-header">جناح البحث الأكاديمي والجامعي</h1>
+      
+      <p>
+        جناح متخصص ومصمم لخدمة طلاب الجامعات، باحثي الماجستير والدكتوراه، وأعضاء هيئة التدريس لإنجاز المهام الأكاديمية الصعبة بأعلى معايير الرصانة العلمية.
+      </p>
+
+      <h2>1. قراءة واستيعاب الأوراق البحثية (Paper Analysis)</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>الأمر</th>
+            <th>المهمة الأكاديمية</th>
+            <th>مخرج الأمر المتوقع</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="cmd-badge">/paperbrief</span></td><td>تلخيص سريع ومكثف لجوهر الورقة العلمية</td><td>ملخص تنفيذي يحدد مشكلة الدراسة ومنهجيتها وخلاصتها</td></tr>
+          <tr><td><span class="cmd-badge">/paperclaim</span></td><td>استخراج الادعاءات والمبررات العلمية الرئيسية</td><td>قائمة دقيقة بالفرضيات والنتائج التي يزعم الباحث إثباتها</td></tr>
+          <tr><td><span class="cmd-badge">/papergaps</span></td><td>اكتشاف الفجوات البحثية والمجالات غير المكتملة</td><td>تحديد ما أغفلته الورقة البحثية لاقتراح دراسات مستقبلية</td></tr>
+          <tr><td><span class="cmd-badge">/papercritique</span></td><td>تقييم نقدي متوازن لمنهجية وعينات البحث</td><td>كشف نقاط القوة، مواطن التحيز المحتملة، وضعف الأدلة</td></tr>
+        </tbody>
+      </table>
+
+      <h2>2. إعداد الرسائل ومشاريع التخرج (Thesis & Capstone)</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>الأمر</th>
+            <th>المهمة</th>
+            <th>التطبيق العملي</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="cmd-badge">/thesisoutline</span></td><td>هندسة المخطط العام للرسالة أو مشروع التخرج</td><td>بناء هيكل الفصول والأبواب وفق دليل الجامعة المعتمد</td></tr>
+          <tr><td><span class="cmd-badge">/literaturereview</span></td><td>المساعدة في بناء وتصنيف مراجعة الأدبيات</td><td>تجميع وتصنيف الدراسات السابقة واستخلاص المشترك بينها</td></tr>
+          <tr><td><span class="cmd-badge">/chartchoose</span></td><td>اختيار الرسم البياني الأنسب لعرض البيانات</td><td>تحديد نوع المخطط (Bar, Scatter, Heatmap) الأنسب لطبيعة المتغيرات</td></tr>
+          <tr><td><span class="cmd-badge">/viva</span> & <span class="cmd-badge">/thesisdefense</span></td><td>محاكاة أسئلة لجنة المناقشة الأكاديمية والتدريب عليها</td><td>توليد الأسئلة الصعبة المتوقعة وتدريب الباحث على الدفاع برصانة</td></tr>
+        </tbody>
+      </table>
+
+      <h2>3. بنوك الامتحانات ومحاكاة الاختبارات</h2>
+      <div class="callout gold">
+        <div class="callout-title">📌 أدوات التدريب والتقييم السريع</div>
+        <p style="margin: 0; font-size: 8.5pt;">
+          • <span class="cmd-badge">/mcqmaker</span>: توليد أسئلة اختيار من متعدد مع شرح مبررات صحة كل خيار.<br>
+          • <span class="cmd-badge">/examtrap</span>: كشف الأفخاخ المفاهيمية الشائعة التي يقع فيها الطلاب في الامتحانات.<br>
+          • <span class="cmd-badge">/mockexam</span>: إنشاء اختبار تجريبي متكامل محدد بزمن ودرجات تقييمية.
+        </p>
+      </div>
+    </div>
+
+    <!-- ==================== الباب السادس ==================== -->
+    <div class="page-break" id="chap6">
+      <span class="chapter-tag">الباب السادس</span>
+      <h1 class="chapter-header">المصفوفة المؤسسية الكبرى (قاموس 832 اختصاراً)</h1>
+      
+      <p>
+        يمثل هذا الباب النظام القياسي الموحد الأكثر اكتمالاً في توجيه الذكاء الاصطناعي لبيئات العمل المؤسسية. يتكون النظام من <strong>26 مجالاً وظيفياً</strong>، يحتوي كل مجال منها على نفس <strong>المهام الـ 32 المشتركة</strong> بالترتيب نفسه، مما يعطي إجمالي <strong>832 اختصاراً معيارياً</strong> بصيغة: <code>/المجال_المهمة</code>.
+      </p>
+
+      <h2>1. المجالات الـ 26 المعتمدة وترقيمها المرجعي</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-family: 'Tajawal', sans-serif; font-size: 8.5pt; margin: 10px 0;">
+        <div>01 — الصوت والتفريغ (001-032)</div>
+        <div>02 — الاجتماعات (033-064)</div>
+        <div>03 — العروض التقديمية (065-096)</div>
+        <div>04 — إدارة المشاريع (097-128)</div>
+        <div>05 — CRM والمبيعات (129-160)</div>
+        <div>06 — خدمة العملاء (161-192)</div>
+        <div>07 — الموارد البشرية (193-224)</div>
+        <div>08 — العمليات وإجراءات SOP (225-256)</div>
+        <div>09 — التسويق المتقدم (257-288)</div>
+        <div>10 — البراند والهوية (289-320)</div>
+        <div>11 — التصميم والواجهات (321-352)</div>
+        <div>12 — الفيديو والمونتاج (353-384)</div>
+        <div>13 — الصور وتوليد المشاهد (385-416)</div>
+        <div>14 — البحث والتقصي (417-448)</div>
+        <div>15 — الكتابة والتحرير (449-480)</div>
+        <div>16 — SEO وتهيئة المحركات (481-512)</div>
+        <div>17 — الملفات والمستندات (513-544)</div>
+        <div>18 — البيانات والتحليل (545-576)</div>
+        <div>19 — البرمجة وهندسة النظم (577-608)</div>
+        <div>20 — التعليم وتصميم المناهج (609-640)</div>
+        <div>21 — صناعة الكتب والنشر (641-672)</div>
+        <div>22 — هندسة الأوامر Prompt Eng (673-704)</div>
+        <div>23 — الوكلاء الأذكياء AI Agents (705-736)</div>
+        <div>24 — الجودة والتقييم QA (737-768)</div>
+        <div>25 — الأتمتة وسير العمل (769-800)</div>
+        <div>26 — التخطيط الاستراتيجي (801-832)</div>
+      </div>
+
+      <h2>2. جدول المهام الـ 32 المشتركة عبر كافة المجالات</h2>
+      <p style="font-size: 8.5pt; color: var(--text-muted);">
+        كل مهمة في الجدول التالي يمكن تركيبها مع أي مجال من المجالات الـ 26 السابقة، لتشكل اختصاراً دقيقاً ومستقلاً يحدد المخرج المطلوب مباشرة.
+      </p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>رمز المهمة</th>
+            <th>المعنى التشغيلي</th>
+            <th>رمز المهمة</th>
+            <th>المعنى التشغيلي</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>brief</code></td><td>صياغة موجز تنفيذي يحدد النطاق والهدف</td><td><code>checklist</code></td><td>تحويل العمل إلى قائمة تحقق قابلة للتأشير</td></tr>
+          <tr><td><code>intake</code></td><td>استقبال البيانات وحصر المعلومات الناقصة</td><td><code>template</code></td><td>إنشاء قالب منظم وقابل لإعادة التعبئة</td></tr>
+          <tr><td><code>classify</code></td><td>تصنيف العناصر بحسب الأولوية والمسار</td><td><code>workflow</code></td><td>رسم تدفق تسلسل العمل ومسارات الاستثناء</td></tr>
+          <tr><td><code>extract</code></td><td>استخراج الحقائق والحقول المطلوبة فقط</td><td><code>risks</code></td><td>حصر المخاطر وتقدير الاحتمال وخطة التخفيف</td></tr>
+          <tr><td><code>summarize</code></td><td>تلخيص مركز دون إخلال أو معلومات خارجية</td><td><code>metrics</code></td><td>تعريف مؤشرات القياس (KPIs) وطرق الحساب</td></tr>
+          <tr><td><code>analyze</code></td><td>تحليل الأسباب والأنماط وفصل الظن عن الدليل</td><td><code>report</code></td><td>إعداد تقرير يبدأ بالخلاصة ثم الأدلة والتوصيات</td></tr>
+          <tr><td><code>diagnose</code></td><td>تشخيص موضع الخلل وبناء أسباب قابلة للفحص</td><td><code>email</code></td><td>صياغة رسالة رسمية بطلب وخطوة تالية واضحة</td></tr>
+          <tr><td><code>prioritize</code></td><td>ترتيب الأولويات وفق الأثر والجهد والوقت</td><td><code>script</code></td><td>كتابة نص حواري منطوق أو سيناريو مكالمة</td></tr>
+          <tr><td><code>plan</code></td><td>تقسيم الهدف إلى خطة زمنية بنقاط مراجعة</td><td><code>questions</code></td><td>توليد أسئلة تكشف الاحتياج وتفحص الجودة</td></tr>
+          <tr><td><code>outline</code></td><td>بناء هيكل متسلسل ومرقم للأقسام والفصول</td><td><code>decision</code></td><td>إعداد مذكرة قرار للمفاضلة بين البدائل</td></tr>
+          <tr><td><code>draft</code></td><td>إنتاج مسودة أولى متكاملة جاهزة للتحرير</td><td><code>translate</code></td><td>ترجمة دقيقة تحافظ على المصطلحات والنبرة</td></tr>
+          <tr><td><code>rewrite</code></td><td>إعادة الصياغة بأسلوب ونبرة مختلفة</td><td><code>localize</code></td><td>توطين النص لثقافة وسوق محدد</td></tr>
+          <tr><td><code>expand</code></td><td>توسيع الفكرة بالأمثلة والشرح التطبيقي</td><td><code>proofread</code></td><td>تدقيق إملائي ونحوي وضبط علامات الترقيم</td></tr>
+          <tr><td><code>simplify</code></td><td>تبسيط اللغة والمفردات مع حفظ الدقة</td><td><code>review</code></td><td>مراجعة الجودة وفق معايير معلنة وترتيب العيوب</td></tr>
+          <tr><td><code>compare</code></td><td>مقارنة البدائل في جدول وإبراز الفروق</td><td><code>handoff</code></td><td>إعداد ملف تسليم المهمة لمالك آخر</td></tr>
+          <tr><td><code>score</code></td><td>تقييم كمي برقم وميزان ترجيحي مبرر</td><td><code>retro</code></td><td>مراجعة لاحقة للمشروع لاستخلاص الدروس المستفادة</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout blue">
+        <div class="callout-title">💡 أمثلة تطبيقية على قوة التركيب السريع:</div>
+        <p style="margin: 0; font-size: 8.5pt;">
+          • <code>/sales_email</code>: يكتب فوراً رسالة متابعة مهذبة لعميل طلب عرض سعر.<br>
+          • <code>/research_compare</code>: يقارن بدائل تقنية أو استثمارية في جدول مفاضلة معياري.<br>
+          • <code>/project_risks</code>: يحلل مخاطر إطلاق المشروع الجديد ويحدد مسؤول تخفيف كل خطر.
+        </p>
+      </div>
+    </div>
+
+    <!-- ==================== الخاتمة وبطاقة المؤلف ==================== -->
+    <div class="page-break" id="author">
+      <span class="chapter-tag">خاتمة المطاف</span>
+      <h1 class="chapter-header">عن المؤلف ومجتمع AI Navigators</h1>
+      
+      <p>
+        إن الذكاء الاصطناعي لا يستبدل العقول المفكرة، بل يضاعف قدرة أولئك الذين يعرفون <strong>كيف يوجهون الآلة بدقة وانضباط</strong>. نتمنى أن يكون هذا المصنف الماسي مرجعك المكتبي والميداني الدائم في كل مهمة ومسار.
+      </p>
+
+      <div class="author-card">
+        <div class="author-header">
+          <div class="author-avatar">A</div>
+          <div class="author-meta">
+            <h3>Abo Aisel ELmasry</h3>
+            <p>مؤسس مجتمع AI NAVIGATORS • استشاري توجيه الذكاء الاصطناعي وهندسة الأوامر</p>
+          </div>
+        </div>
+        
+        <p style="font-size: 9.5pt; line-height: 1.7; color: #e2e8f0; margin-bottom: 12px;">
+          باحث ومطور نظم عمل في مجال الذكاء الاصطناعي التوليدي، يركز على سد الفجوة بين التقنيات المعقدة وتطبيقات البزنس والأكاديميا في العالم العربي. صاحب مبادرات تدريبية متخصصة في هندسة الأوامر وتحسين الإنتاجية المؤسسية.
+        </p>
+
+        <div class="author-contacts">
+          <div>📱 <strong>واتساب / هاتف:</strong> <a href="https://wa.me/201037489146">01037489146</a></div>
+          <div>✉️ <strong>البريد الرسمي:</strong> aisel.strategy@gmail.com</div>
+          <div>🌐 <strong>المجتمع:</strong> AI NAVIGATORS — Guiding Intelligent Future</div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 25px; font-family: 'Cairo', sans-serif; font-size: 8.5pt; color: #64748b;">
+        تم بحمد الله وتوفيقه • جميع الحقوق محفوظة © 2026 لـ Abo Aisel ELmasry
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
